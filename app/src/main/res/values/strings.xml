@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">CTIStudentClient</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!--NavHeader-->
+    <string name="navHeaderLogin">tmpLogin</string>
+    <string name="navHeaderEmail">tmpEmail</string>
+    <string name="contentText">To aplikacja służąca do zgłaszania awarii sprzętu oraz elewacji budynku w celu utrzymania go w dobrym stanie</string>
+    <string name="contentName">CTIStudentClient</string>
+    <string name="profile_loginText">tempLogin</string>
+    <string name="profile_firstNameText">tempFirstName</string>
+    <string name="profile_lastNameText">tempLastName</string>
+    <string name="profile_dateOfBirthTxt">tempDateOfBirth</string>
+    <string name="profile_cityTxt">tempCity</string>
+    <string name="profile_streetTxt">tempStreet</string>
+    <string name="profile_numberTxt">tempNumber</string>
+    <string name="profile_emailTxt">tempEmail</string>
+    <string name="open_drawer">Drawer Open</string>
+    <string name="close_drawer">Drawer Close</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
