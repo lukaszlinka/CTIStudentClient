@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="400dp"
     android:orientation="vertical"
+    android:id="@+id/fragment_send_description"
     tools:context="lukasz.ctistudentclient.Fragments.SendDescriptionFrament">
 
     <LinearLayout

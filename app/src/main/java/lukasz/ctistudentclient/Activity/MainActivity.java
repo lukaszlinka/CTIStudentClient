@@ -2,9 +2,6 @@ package lukasz.ctistudentclient.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,8 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-import lukasz.ctistudentclient.Fragments.LoginFragment;
+import lukasz.ctistudentclient.Models.Singleton;
+import lukasz.ctistudentclient.Models.UserModel;
 import lukasz.ctistudentclient.R;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -31,6 +30,17 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+
+        UserModel user = new UserModel();
+        user.setCity("Zduńska Wola");
+        user.setEmail("onet@wp.pl");
+        user.setFirstName("łukasz");
+        user.setLastName("Linka");
+        user.setLogin("tukanls");
+        user.setStreet("Laska");
+        user.setNumber("54/44");
+        Singleton.getInstance().setUserProfile(user);
+
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -74,14 +84,14 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_main) {
             Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_gallery) {
             Intent intent = new Intent(MainActivity.this, ScannerActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_notication) {
             Intent intent = new Intent(MainActivity.this, Notificationactivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_manage) {
@@ -95,5 +105,8 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void Login_click(View view) {
     }
 }

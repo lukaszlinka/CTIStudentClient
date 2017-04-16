@@ -1,8 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="24dp"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="24px"
+    android:layout_marginRight="24px"
     android:orientation="vertical"
     tools:context="lukasz.ctistudentclient.Fragments.SendPriorityFragment">
 
@@ -12,7 +13,8 @@
         android:id="@+id/send_priority_radioBtn"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_marginTop="48px"
+        android:layout_height="wrap_content">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,6 +31,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Podejrzewam że się psuje"/>
+
+            <RadioButton
+                android:id="@+id/radioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Wymaga naprawy"
+                android:textSize="22dp" />
+
             <RadioButton
                 android:textSize="22dp"
                 android:layout_marginTop="5dp"
@@ -41,12 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Zaczyna się psuć"/>
-            <RadioButton
-                android:textSize="22dp"
-                android:layout_marginTop="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Wymaga naprawy"/>
+
             <RadioButton
                 android:textSize="22dp"
                 android:layout_marginTop="5dp"
@@ -62,12 +68,12 @@
     <!--android:layout_height="wrap_content">-->
     <!---->
     <!--</LinearLayout>-->
-    <Button
-        android:layout_alignParentBottom="true"
-        android:id="@+id/profile_logoutBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Dalej"
-        android:layout_marginBottom="12dp"/>
+    <!--<Button-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:id="@+id/profile_logoutBtn"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Dalej"-->
+        <!--android:layout_marginBottom="12dp"/>-->
 
 </RelativeLayout>
