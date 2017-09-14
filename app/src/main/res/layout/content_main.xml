@@ -48,11 +48,11 @@
             android:id="@+id/txtViewDescription"
             android:layout_below="@id/imgViewLogo"/>
         <Button
-            android:id="@+id/buttonLogin"
+            android:id="@+id/main_activity_buttonNotification"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:maxHeight="60dp"
-            android:text="Zaloguj"/>
+            android:text="Zgłoś usterkę!"/>
     </RelativeLayout>
 </LinearLayout>

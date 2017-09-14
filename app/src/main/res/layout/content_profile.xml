@@ -18,7 +18,10 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -57,7 +60,7 @@
                         android:layout_height="wrap_content"
                         android:width="200dp"
                         android:textSize="22dp"
-                        android:text="@string/profile_loginText"/>
+                        android:text="@string/login_activity_loginText"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -75,13 +78,14 @@
                     android:text="Imię:"
                     android:textSize="24dp" />
 
-                <TextView
+                <EditText
+                    android:id="@+id/profile_firstNameET"
+                    android:lines="1"
                     android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:width="200dp"
-                    android:textSize="22dp"
-                    android:text="@string/profile_firstNameText"/>
+                    android:textSize="22dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -97,13 +101,14 @@
                     android:text="Nazwisko:"
                     android:textSize="24dp" />
 
-                <TextView
+                <EditText
+                    android:id="@+id/profile_lastNameET"
+                    android:lines="1"
                     android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:width="200dp"
-                    android:textSize="22dp"
-                    android:text="@string/profile_lastNameText"/>
+                    android:textSize="22dp"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/profile_email"
@@ -118,13 +123,14 @@
                     android:text="Email:"
                     android:textSize="24dp" />
 
-                <TextView
+                <EditText
+                    android:id="@+id/profile_emailET"
+                    android:lines="1"
                     android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:width="200dp"
-                    android:textSize="22dp"
-                    android:text="@string/profile_emailTxt"/>
+                    android:textSize="22dp"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/profile_dateOfBirth"
@@ -140,12 +146,14 @@
                     android:textSize="24dp" />
 
                 <TextView
+                    android:id="@+id/profile_dateOfBirthET"
+                    android:lines="1"
+                    android:onClick="setDate"
                     android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:width="200dp"
-                    android:textSize="22dp"
-                    android:text="@string/profile_dateOfBirthTxt"/>
+                    android:textSize="22dp"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/profile_city"
@@ -160,13 +168,14 @@
                     android:text="Miejscowość:"
                     android:textSize="24dp" />
 
-                <TextView
+                <EditText
+                    android:id="@+id/profile_cityET"
+                    android:lines="1"
                     android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:width="200dp"
-                    android:textSize="22dp"
-                    android:text="@string/profile_cityTxt"/>
+                    android:textSize="22dp"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/profile_street"
@@ -181,13 +190,14 @@
                     android:text="Ulica:"
                     android:textSize="24dp" />
 
-                <TextView
+                <EditText
+                    android:id="@+id/profile_streetET"
+                    android:lines="1"
                     android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:width="200dp"
-                    android:textSize="22dp"
-                    android:text="@string/profile_streetTxt"/>
+                    android:textSize="22dp"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/profile_number"
@@ -202,13 +212,14 @@
                     android:text="Numer:"
                     android:textSize="24dp" />
 
-                <TextView
+                <EditText
+                    android:id="@+id/profile_numberET"
+                    android:lines="1"
                     android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:width="200dp"
-                    android:textSize="22dp"
-                    android:text="@string/profile_numberTxt"/>
+                    android:textSize="22dp"/>
             </LinearLayout>
             <Button
                 android:id="@+id/profile_logoutBtn"

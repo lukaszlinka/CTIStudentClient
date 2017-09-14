@@ -63,7 +63,7 @@
                             android:layout_height="wrap_content"
                             android:width="200dp"
                             android:textSize="22dp"
-                            android:text="@string/profile_loginText"/>
+                            android:text="@string/login_activity_loginText"/>
                     </LinearLayout>
                 </LinearLayout>
 

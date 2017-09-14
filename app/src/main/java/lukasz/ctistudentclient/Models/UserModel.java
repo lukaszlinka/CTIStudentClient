@@ -1,5 +1,7 @@
 package lukasz.ctistudentclient.Models;
 
+import java.util.Date;
+
 /**
  * Created by tukan on 08.01.2017.
  */
@@ -12,6 +14,16 @@ public class UserModel {
     private String city;
     private String street;
     private String number;
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    private Date birthday;
 
     @Override public String toString(){
         return (login + " " + firstName + " " + lastName + " " + email + " " + city + " " + street + " " + number);

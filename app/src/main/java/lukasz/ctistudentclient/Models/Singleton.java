@@ -1,5 +1,7 @@
 package lukasz.ctistudentclient.Models;
 
+import android.app.Notification;
+
 /**
  * Created by tukan on 16.04.2017.
  */
@@ -9,8 +11,12 @@ public class Singleton {
 
     private UserModel userProfile;
 
+
+    private NotificationModel userNotification;
+
     private Singleton(){
         userProfile = new UserModel();
+        userNotification = new NotificationModel();
     }
 
     public static Singleton getInstance(){
@@ -27,5 +33,12 @@ public class Singleton {
 
     public void setUserProfile(UserModel value){
         userProfile = value;
+    }
+    public NotificationModel getUserNotification() {
+        return this.userNotification;
+    }
+
+    public void setUserNotification(NotificationModel userNotification) {
+        this.userNotification = userNotification;
     }
 }

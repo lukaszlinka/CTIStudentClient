@@ -5,18 +5,17 @@
     tools:context="lukasz.ctistudentclient.Fragments.LoginFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_gravity="center"
-        android:layout_margin="24dp">
+        android:layout_margin="24dp"
+        android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/login_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/login_image"
             android:gravity="center">
 
             <ImageView
@@ -26,13 +25,13 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/login_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/login_image"
+            android:layout_marginBottom="24dp"
             android:layout_marginLeft="48dp"
             android:layout_marginTop="12dp"
-            android:layout_marginBottom="24dp"
-            android:id="@+id/login_login"
             android:orientation="vertical">
 
             <LinearLayout
@@ -52,7 +51,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:width="200dp"
-                    android:text="@string/profile_loginText"
                     android:textColor="@android:color/black"
                     android:textSize="22dp" />
             </LinearLayout>
@@ -70,11 +68,10 @@
                     android:textSize="24dp" />
 
                 <EditText
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:width="200dp"
-                    android:text="@string/profile_loginText"
+                    android:inputType="textPassword"
                     android:textColor="@android:color/black"
                     android:textSize="22dp" />
             </LinearLayout>
@@ -88,7 +85,7 @@
             android:layout_below="@id/login_login"
             android:layout_marginBottom="12dp"
             android:onClick="Login_click"
-            android:text="Wyloguj" />
+            android:text="Zaloguj" />
     </RelativeLayout>
 
 

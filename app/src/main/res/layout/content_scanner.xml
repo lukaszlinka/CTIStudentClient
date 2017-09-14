@@ -16,9 +16,6 @@
     android:layout_margin="24dp"
     android:orientation="vertical">
 
-    <Button android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:text="QRScanner"
-        android:onClick="QrScanner" />
+
 
 </RelativeLayout>
