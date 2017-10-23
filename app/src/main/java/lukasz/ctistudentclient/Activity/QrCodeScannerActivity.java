@@ -4,12 +4,11 @@ import android.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
+
 import com.google.zxing.Result;
-import lukasz.ctistudentclient.Models.Singleton;
+import lukasz.ctistudentclient.Session.UserSession;
 import lukasz.ctistudentclient.Models.NotificationModel;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
-import lukasz.ctistudentclient.R;
 
 public class QrCodeScannerActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
@@ -20,7 +19,7 @@ public class QrCodeScannerActivity extends AppCompatActivity implements ZXingSca
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_qr_code_scanner);
+        //setContentView(R.layout.activity_qr_code_scanner);
 
         QrScanner();
 
@@ -41,12 +40,7 @@ public class QrCodeScannerActivity extends AppCompatActivity implements ZXingSca
 
     @Override
     public void handleResult(Result rawResult) {
-        // Do something with the result here
 
-        notification = Singleton.getInstance().getUserNotification();
-        if(notification!=null){
-            notification.setScanCode(rawResult.getText());
-        }
         Log.e("handler", rawResult.getText()); // Prints scan results
         Log.e("handler", rawResult.getBarcodeFormat().toString()); // Prints the scan format (qrcode)
         // show the scanner result into dialog box.
@@ -55,11 +49,11 @@ public class QrCodeScannerActivity extends AppCompatActivity implements ZXingSca
         builder.setMessage(rawResult.getText());
         AlertDialog alert1 = builder.create();
         alert1.show();
-        notification = Singleton.getInstance().getUserNotification();
-        if(notification!=null)
+
+        notification = UserSession.getInstance().getUserNotification();
+        if (notification != null)
             notification.setScanCode(rawResult.getText());
+
         super.finish();
-        // If you would like to resume scanning, call this method below:
-        // mScannerView.resumeCameraPreview(this);
     }
 }

@@ -1,7 +1,5 @@
 package lukasz.ctistudentclient.Fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,10 +8,10 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import lukasz.ctistudentclient.Models.NotificationModel;
-import lukasz.ctistudentclient.Models.Singleton;
+import lukasz.ctistudentclient.Session.UserSession;
 import lukasz.ctistudentclient.R;
 
-public class SendPlaceFragment extends Fragment {
+public class PlaceFragment extends Fragment {
 
     EditText levelEditText, roomEditText, descriptionEditText;
     NotificationModel notification;
@@ -51,7 +49,7 @@ public class SendPlaceFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_send_place, container, false);
+        View view = inflater.inflate(R.layout.fragment_place, container, false);
         levelEditText = (EditText) view.findViewById(R.id.send_place_level_text);
         roomEditText = (EditText) view.findViewById(R.id.send_place_room_text);
         descriptionEditText = (EditText) view.findViewById(R.id.send_place_description_text);
@@ -62,7 +60,7 @@ public class SendPlaceFragment extends Fragment {
     @Override
     public void onResume() {
 
-        notification = Singleton.getInstance().getUserNotification();
+        notification = UserSession.getInstance().getUserNotification();
         if(notification!=null)
         {
             levelEditText.setText(notification.getLevel());

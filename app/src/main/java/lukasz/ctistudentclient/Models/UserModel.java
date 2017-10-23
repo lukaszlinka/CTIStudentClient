@@ -7,6 +7,7 @@ import java.util.Date;
  */
 
 public class UserModel {
+
     private String login;
     private String firstName;
     private String lastName;

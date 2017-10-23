@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "457095398019",
+    "firebase_url": "https://ctimobile-a6306.firebaseio.com",
+    "project_id": "ctimobile-a6306",
+    "storage_bucket": "ctimobile-a6306.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:457095398019:android:e7ff836e168ffb2a",
+        "android_client_info": {
+          "package_name": "lukasz.ctistudentclient"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "457095398019-jt1hd5q2hj8mdmc7m0uos8unpuqbgiih.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "lukasz.ctistudentclient",
+            "certificate_hash": "ce8446502656eae16c42550f0f128c11ae073cc6"
+          }
+        },
+        {
+          "client_id": "457095398019-br6c5g75739kth7ijcuq40mh8ugq57hm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCK9S_eqyumegdGBu-QW2LQMrUDz7YhTY4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "457095398019-br6c5g75739kth7ijcuq40mh8ugq57hm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

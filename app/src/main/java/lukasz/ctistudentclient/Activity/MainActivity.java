@@ -8,14 +8,19 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.Date;
 
-import lukasz.ctistudentclient.Models.Singleton;
+import lukasz.ctistudentclient.Session.UserSession;
 import lukasz.ctistudentclient.Models.UserModel;
 import lukasz.ctistudentclient.R;
 
@@ -23,6 +28,8 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     private Button notificationButton;
+    private TextView login, email;
+    private ImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +56,17 @@ public class MainActivity extends AppCompatActivity
         user.setLogin("tukanls");
         user.setStreet("Laska");
         user.setNumber("54/44");
-        Singleton.getInstance().setUserProfile(user);
+        UserSession.getInstance().setUserProfile(user);
 
+        Log.d("MA", String.format("Registration token = %s",
+                FirebaseInstanceId.getInstance().getToken()));
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        View header = navigationView.getHeaderView(0);
+        login = (TextView) header.findViewById(R.id.header_login);
+        email = (TextView) header.findViewById(R.id.header_email);
+        image = (ImageView) header.findViewById(R.id.header_imageView);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -66,27 +80,27 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.main, menu);
+//        return true;
+//    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -95,12 +109,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_main) {
-            Intent intent = new Intent(MainActivity.this, MainActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+//            startActivity(intent);
         } else if (id == R.id.nav_profile) {
             Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
             startActivity(intent);
-
         } else if (id == R.id.nav_notification) {
             Intent intent = new Intent(MainActivity.this, Notificationactivity.class);
             startActivity(intent);
@@ -117,6 +130,16 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    @Override
+    protected void onResume() {
+        if (login != null)
+            login.setText(UserSession.getInstance().getUserProfile().getLogin());
+        if (email != null)
+            email.setText(UserSession.getInstance().getUserProfile().getEmail());
+        if(image!=null)
+            image.setImageResource(R.drawable.ic_header_image);
+        super.onResume();
+    }
 
     @Override
     public void onClick(View v) {

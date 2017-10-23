@@ -13,17 +13,18 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import lukasz.ctistudentclient.Models.NotificationModel;
-import lukasz.ctistudentclient.Models.Singleton;
+import lukasz.ctistudentclient.Session.UserSession;
 import lukasz.ctistudentclient.R;
 
 public class PhotoActivity extends AppCompatActivity {
@@ -32,42 +33,38 @@ public class PhotoActivity extends AppCompatActivity {
     private ImageView mImageView;
     private Bitmap mImageBitmap;
     private String mCurrentPhotoPath;
-
+    private File file;
     private static final String JPEG_FILE_PREFIX = "IMG_";
     private static final String JPEG_FILE_SUFFIX = ".jpg";
 
-    private AlbumStorageDirFactory mAlbumStorageDirFactory = null;
-
-
-    /* Photo album for this application */
-    private String getAlbumName() {
-        return getString(R.string.album_name);
-    }
     private File getAlbumDir() {
+
         File storageDir = null;
 
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
 
-            storageDir = mAlbumStorageDirFactory.getAlbumStorageDir(getAlbumName());
+            storageDir = new File(
+                    Environment.getExternalStoragePublicDirectory(
+                            Environment.DIRECTORY_PICTURES
+                    ),
+                    "CameraSample"
+            );
 
             if (storageDir != null) {
-                if (! storageDir.mkdirs()) {
-                    if (! storageDir.exists()){
-                        Log.d("CameraSample", "failed to create directory");
+                if (!storageDir.mkdirs()) {
+                    if (!storageDir.exists()) {
                         return null;
                     }
                 }
             }
 
-        } else {
-            Log.v(getString(R.string.app_name), "External storage is not mounted READ/WRITE.");
         }
 
         return storageDir;
     }
 
     private File createImageFile() throws IOException {
-        // Create an image file name
+
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = JPEG_FILE_PREFIX + timeStamp + "_";
         File albumF = getAlbumDir();
@@ -75,69 +72,33 @@ public class PhotoActivity extends AppCompatActivity {
         return imageF;
     }
 
-    private File setUpPhotoFile() throws IOException {
-
-        File f = createImageFile();
-        mCurrentPhotoPath = f.getAbsolutePath();
-
-        return f;
+    private void setUpPhotoFile() throws IOException {
+        file = createImageFile();
     }
 
     private void setPic() {
-        int targetW = mImageView.getWidth();
-        int targetH = mImageView.getHeight();
 
-		/* Get the size of the image */
-        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-        bmOptions.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
-        int photoW = bmOptions.outWidth;
-        int photoH = bmOptions.outHeight;
-
-		/* Figure out which way needs to be reduced less */
-        int scaleFactor = 1;
-        if ((targetW > 0) || (targetH > 0)) {
-            scaleFactor = Math.min(photoW/targetW, photoH/targetH);
-        }
-
-		/* Set bitmap options to scale the image decode target */
-        bmOptions.inJustDecodeBounds = false;
-        bmOptions.inSampleSize = scaleFactor;
-        bmOptions.inPurgeable = true;
-
-		/* Decode the JPEG file into a Bitmap */
-        Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
-        NotificationModel notification = Singleton.getInstance().getUserNotification();
-        if(notification!=null){
+        Bitmap bitmap = decodeFile(file, 300, 300);
+        NotificationModel notification = UserSession.getInstance().getUserNotification();
+        if (notification != null) {
             notification.setImage(bitmap);
         }
-		/* Associate the Bitmap to the ImageView */
-        //mImageView.setImageBitmap(bitmap);
         super.finish();
     }
 
-    private void galleryAddPic() {
-        Intent mediaScanIntent = new Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE");
-        File f = new File(mCurrentPhotoPath);
-        Uri contentUri = Uri.fromFile(f);
-        mediaScanIntent.setData(contentUri);
-        this.sendBroadcast(mediaScanIntent);
-    }
     private void dispatchTakePictureIntent() {
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-                File f = null;
-
-                try {
-                    f = setUpPhotoFile();
-                    mCurrentPhotoPath = f.getAbsolutePath();
-                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    f = null;
-                    mCurrentPhotoPath = null;
-                }
+        try {
+            setUpPhotoFile();
+            mCurrentPhotoPath = file.getAbsolutePath();
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+        } catch (IOException e) {
+            e.printStackTrace();
+            file = null;
+            mCurrentPhotoPath = null;
+        }
 
         startActivityForResult(takePictureIntent, 1);
     }
@@ -146,20 +107,9 @@ public class PhotoActivity extends AppCompatActivity {
 
         if (mCurrentPhotoPath != null) {
             setPic();
-            //galleryAddPic();
             mCurrentPhotoPath = null;
         }
     }
-
-
-//    Button.OnClickListener mTakePicOnClickListener =
-//            new Button.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    dispatchTakePictureIntent(ACTION_TAKE_PHOTO_B);
-//                }
-//            };
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,22 +119,17 @@ public class PhotoActivity extends AppCompatActivity {
         mImageView = (ImageView) findViewById(R.id.imageView);
         mImageBitmap = null;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO) {
-            mAlbumStorageDirFactory = new FroyoAlbumDirFactory();
-        } else {
-            mAlbumStorageDirFactory = new BaseAlbumDirFactory();
-        }
         dispatchTakePictureIntent();
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-                if (resultCode == RESULT_OK) {
-                    handleBigCameraPhoto();
-                }
+        if (resultCode == RESULT_OK) {
+            handleBigCameraPhoto();
+        }
 
     }
 
-    // Some lifecycle callbacks so that the image can survive orientation change
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putParcelable(BITMAP_STORAGE_KEY, mImageBitmap);
@@ -198,13 +143,21 @@ public class PhotoActivity extends AppCompatActivity {
         mImageView.setImageBitmap(mImageBitmap);
     }
 
+    public static Bitmap decodeFile(File f, int width, int height) {
+        try {
+            BitmapFactory.Options o = new BitmapFactory.Options();
+            o.inJustDecodeBounds = true;
+            BitmapFactory.decodeStream(new FileInputStream(f), null, o);
 
-    public static boolean isIntentAvailable(Context context, String action) {
-        final PackageManager packageManager = context.getPackageManager();
-        final Intent intent = new Intent(action);
-        List<ResolveInfo> list =
-                packageManager.queryIntentActivities(intent,
-                        PackageManager.MATCH_DEFAULT_ONLY);
-        return list.size() > 0;
+            int scale = 1;
+            while (o.outWidth / scale / 2 >= width && o.outHeight / scale / 2 >= height)
+                scale *= 2;
+
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = scale;
+            return BitmapFactory.decodeStream(new FileInputStream(f), null, options);
+        } catch (FileNotFoundException e) {
+        }
+        return null;
     }
 }

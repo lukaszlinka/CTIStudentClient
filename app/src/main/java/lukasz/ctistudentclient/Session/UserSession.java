@@ -1,102 +1,61 @@
 package lukasz.ctistudentclient.Session;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+
+import lukasz.ctistudentclient.Models.NotificationModel;
+import lukasz.ctistudentclient.Models.UserModel;
 
 /**
- * Created by tukan on 12.02.2017.
+ * Created by tukan on 16.04.2017.
  */
 
 public class UserSession {
+    private static UserSession mInstance = null;
 
-    private static UserSession instance;
-    private String firstName;
-    private String lastName;
-    private String city;
-    private String street;
-    private String number;
-    private String email;
-    private Date birthday;
+    private UserModel userProfile;
+    private NotificationModel userNotification;
+    private List<NotificationModel> userNotificationList;
 
-    private UserSession()
-    {
-//        this.firstName = "";
-//        this.lastName = "";
-//        this.email = "";
-//        this.city = "";
-//        this.street = "";
-//        this.number = "";
-//        this.birthday = new Date();
+    private UserSession(){
+        userProfile = new UserModel();
+        userNotification = new NotificationModel();
+        userNotificationList = new ArrayList<NotificationModel>();
     }
 
-    public static UserSession Instance()
-    {
-        if (instance == null)
+    public static UserSession getInstance(){
+        if(mInstance == null)
         {
-            instance = new UserSession();
+            mInstance = new UserSession();
         }
-        return instance;
+        return mInstance;
     }
 
-    public static void ClearUser()
-    {
-        if (instance != null)
-        {
-            instance = new UserSession();
-        }
-    }
-    public String getStreet() {
-        return street;
+    public UserModel getUserProfile(){
+        return this.userProfile;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
+    public void setUserProfile(UserModel value){
+        userProfile = value;
+    }
+    public NotificationModel getUserNotification() {
+        return this.userNotification;
     }
 
-    public String getLastName() {
-        return lastName;
+    public void setUserNotification(NotificationModel userNotification) {
+        this.userNotification = userNotification;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void clearUserNotification() {
+        this.userNotification = new NotificationModel();
     }
 
-    public String getNumber() {
-        return number;
+    public List<NotificationModel> getUserNotificationList() {
+        return userNotificationList;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setUserNotificationList(List<NotificationModel> userNotificationList) {
+        this.userNotificationList = userNotificationList;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
 }

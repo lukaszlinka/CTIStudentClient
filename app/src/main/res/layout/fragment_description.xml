@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="lukasz.ctistudentclient.Fragments.SendDescriptionFrament">
+    tools:context="lukasz.ctistudentclient.Fragments.DescriptionFrament">
 
 
 
@@ -35,7 +35,7 @@
                     android:layout_marginRight="24dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="photo" />
+                    android:text="Zrób zdjęcie" />
 
             </LinearLayout>
 

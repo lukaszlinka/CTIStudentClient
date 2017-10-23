@@ -5,7 +5,7 @@
     android:layout_marginLeft="24px"
     android:layout_marginRight="24px"
     android:orientation="vertical"
-    tools:context="lukasz.ctistudentclient.Fragments.SendPriorityFragment">
+    tools:context="lukasz.ctistudentclient.Fragments.PriorityFragment">
 
     <LinearLayout
         android:layout_centerHorizontal="true"
@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Wymaga naprawy"
+                android:text="Zaczyna się psuć"
                 android:textSize="22dp" />
 
             <RadioButton
@@ -49,14 +49,14 @@
                 android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="aaaaaaaaaaaaaaaaaa"/>
+                android:text="Wymaga naprawy"/>
             <RadioButton
                 android:id="@+id/fragment_send_priority_radioBtn3"
                 android:textSize="22dp"
                 android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Zaczyna się psuć"/>
+                android:text="Poważna awaria"/>
 
             <RadioButton
                 android:id="@+id/fragment_send_priority_radioBtn4"
@@ -64,7 +64,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wymaga nagłej naprawy!"/>
+                android:text="Wymaga natychmiastowej naprawy!"/>
 
         </RadioGroup>
     </LinearLayout>

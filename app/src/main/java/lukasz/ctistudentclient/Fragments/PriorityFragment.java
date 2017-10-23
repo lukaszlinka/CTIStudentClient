@@ -1,7 +1,5 @@
 package lukasz.ctistudentclient.Fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,10 +9,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import lukasz.ctistudentclient.Models.NotificationModel;
-import lukasz.ctistudentclient.Models.Singleton;
+import lukasz.ctistudentclient.Session.UserSession;
 import lukasz.ctistudentclient.R;
 
-public class SendPriorityFragment extends Fragment {
+public class PriorityFragment extends Fragment {
 
 
     private RadioGroup radioGroup;
@@ -36,7 +34,7 @@ public class SendPriorityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_send_priority, container, false);
+        View view = inflater.inflate(R.layout.fragment_priority, container, false);
 
         radioGroup = (RadioGroup) view.findViewById(R.id.fragment_send_priority_radioGroup);
 
@@ -45,7 +43,7 @@ public class SendPriorityFragment extends Fragment {
 
     @Override
     public void onResume() {
-        notification = Singleton.getInstance().getUserNotification();
+        notification = UserSession.getInstance().getUserNotification();
         if (notification != null && radioGroup != null) {
             ((RadioButton)radioGroup.getChildAt(notification.getPriority())).setChecked(true);
             //radioGroup.check(notification.getPriority());

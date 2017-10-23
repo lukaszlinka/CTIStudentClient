@@ -1,9 +1,10 @@
 package lukasz.ctistudentclient.Services;
 
 import lukasz.ctistudentclient.Models.UserModel;
-import retrofit.Call;
+import retrofit.Callback;
+import retrofit.http.Body;
 import retrofit.http.GET;
-import retrofit.http.Path;
+import retrofit.http.POST;
 
 /**
  * Created by tukan on 08.01.2017.
@@ -11,21 +12,13 @@ import retrofit.http.Path;
 
 public interface UserService {
 
-    String ENDPOINT = "https://api.github.com";
+    @GET("/users/user/") // deklarujemy endpoint oraz metodę
+    void getUser(Callback<UserModel> pResponse);
 
-    @GET("/users/{user}")
-    Call<UserModel> getUser(@Path("user") String user);
+    @POST("/users/user/") // deklarujemy endpoint, metodę oraz dane do wysłania
+    void postUser(@Body UserModel pBody, Callback<UserModel> pResponse);
 
-//    @GET("users/{user}/repos")
-//    Call<List<UserModel>> getRepos(@Path("user") String user);
-
-
-
-//    @FormUrlEncoded
-//    @POST("/add")
-//    void resgisterUser(@Body UserModel user, Callback<UserModel> cb);
-//
-//    @GET("/edit&id={id}")
-//    Call<UserModel> getUser(@Query("id") String id);
+    @POST("/users/login/")
+    void postUserLogin(@Body String login, String password, Callback<UserModel> pResponse);
 
 }

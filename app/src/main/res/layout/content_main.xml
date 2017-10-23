@@ -25,7 +25,7 @@
 
             android:text="@string/contentName"
             android:textAlignment="center"
-            android:textSize="40sp"
+            android:textSize="34sp"
             android:layout_marginBottom="24dp"
             android:textColor="@android:color/black"
             android:layout_height="wrap_content"

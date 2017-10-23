@@ -3,25 +3,20 @@ package lukasz.ctistudentclient.Fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
-import lukasz.ctistudentclient.Activity.FroyoAlbumDirFactory;
 import lukasz.ctistudentclient.Activity.PhotoActivity;
 import lukasz.ctistudentclient.Models.NotificationModel;
-import lukasz.ctistudentclient.Models.Singleton;
+import lukasz.ctistudentclient.Session.UserSession;
 import lukasz.ctistudentclient.R;
 
 
-public class SendDescriptionFrament extends Fragment implements View.OnClickListener{
+public class DescriptionFrament extends Fragment implements View.OnClickListener{
 
     private NotificationModel notification;
     private EditText editText;
@@ -51,7 +46,7 @@ public class SendDescriptionFrament extends Fragment implements View.OnClickList
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_send_description, container,false);
+        view = inflater.inflate(R.layout.fragment_description, container,false);
 
         editText = (EditText) view.findViewById(R.id.send_description_editText);
         bt = (Button)view.findViewById(R.id.send_description_photoButton);
@@ -78,7 +73,7 @@ public class SendDescriptionFrament extends Fragment implements View.OnClickList
     }
 
     public void SetImage(){
-        notification = Singleton.getInstance().getUserNotification();
+        notification = UserSession.getInstance().getUserNotification();
         if(notification!=null && imageView!=null){
             if(notification.getImage()!=null)
             imageView.setImageBitmap(notification.getImage());
