@@ -10,7 +10,7 @@ import com.google.firebase.iid.FirebaseInstanceIdService;
  */
 
 public class MyFirebaseInstanceIdService extends FirebaseInstanceIdService {
-    public static final String TAG = "FIS";
+    public static final String TAG = "FCM";
     @Override
     public void onTokenRefresh() {
         // Get updated InstanceID token.

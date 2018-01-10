@@ -21,10 +21,8 @@ import lukasz.ctistudentclient.R;
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "FMS";
     private static final int NOTIFICATION_ID = 0;
-    public MyFirebaseMessagingService() {
-    }
     @Override
-    public void onMessageReceived(RemoteMessage remoteMessage) {
+        public void onMessageReceived(RemoteMessage remoteMessage) {
         // TODO(developer): Handle FCM messages here.
         Log.d(TAG, "From: " + remoteMessage.getFrom());
         Log.d(TAG, "Notification Message Body: " + remoteMessage.getNotification().getBody());
